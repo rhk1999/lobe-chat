@@ -1,3 +1,4 @@
+import type { VertexAI } from '@google-cloud/vertexai';
 import {
   Content,
   FunctionCallPart,
@@ -37,17 +38,23 @@ enum HarmCategory {
 enum HarmBlockThreshold {
   BLOCK_NONE = 'BLOCK_NONE',
   OFF = 'OFF', // https://discuss.ai.google.dev/t/59352
+  }
+
+interface LobeGoogleAIParams {
+  apiKey?: string;
+  baseURL?: string;
+  client?: GoogleGenerativeAI | VertexAI;
 }
 
 export class LobeGoogleAI implements LobeRuntimeAI {
   private client: GoogleGenerativeAI;
   baseURL?: string;
 
-  constructor({ apiKey, baseURL }: { apiKey?: string; baseURL?: string } = {}) {
+  constructor({ apiKey, baseURL, client }: LobeGoogleAIParams = {}) {
     if (!apiKey) throw AgentRuntimeError.createError(AgentRuntimeErrorType.InvalidProviderAPIKey);
 
-    this.client = new GoogleGenerativeAI(apiKey);
-    this.baseURL = baseURL;
+    this.client = client ? (client as GoogleGenerativeAI) : new GoogleGenerativeAI(apiKey);
+    this.baseURL = client ? undefined : baseURL;
   }
 
   async chat(rawPayload: ChatStreamPayload, options?: ChatCompetitionOptions) {

@@ -33,6 +33,7 @@ import { default as stepfun } from './stepfun';
 import { default as taichu } from './taichu';
 import { default as togetherai } from './togetherai';
 import { default as upstage } from './upstage';
+import { default as vertexai } from './vertexai';
 import { default as wenxin } from './wenxin';
 import { default as xai } from './xai';
 import { default as zeroone } from './zeroone';
@@ -91,6 +92,7 @@ export const LOBE_DEFAULT_MODEL_LIST = buildDefaultModelList({
   taichu,
   togetherai,
   upstage,
+  vertexai,
   wenxin,
   xai,
   zeroone,
@@ -130,6 +132,7 @@ export { default as stepfun } from './stepfun';
 export { default as taichu } from './taichu';
 export { default as togetherai } from './togetherai';
 export { default as upstage } from './upstage';
+export { default as vertexai } from './vertexai';
 export { default as wenxin } from './wenxin';
 export { default as xai } from './xai';
 export { default as zeroone } from './zeroone';

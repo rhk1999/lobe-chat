@@ -10,3 +10,5 @@ const MainLayout = ServerLayout<PropsWithChildren>({ Desktop, Mobile });
 MainLayout.displayName = 'DiscoverLayout';
 
 export default MainLayout;
+
+export const dynamic = 'force-static';

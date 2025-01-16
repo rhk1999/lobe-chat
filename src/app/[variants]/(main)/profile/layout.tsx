@@ -9,3 +9,5 @@ const ProfileLayout = ServerLayout<LayoutProps>({ Desktop, Mobile });
 ProfileLayout.displayName = 'ProfileLayout';
 
 export default ProfileLayout;
+
+export const dynamic = 'force-static';

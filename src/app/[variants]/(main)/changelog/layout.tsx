@@ -8,3 +8,5 @@ const MainLayout = ServerLayout({ Desktop, Mobile });
 MainLayout.displayName = 'ChangelogLayout';
 
 export default MainLayout;
+
+export const dynamic = 'force-static';

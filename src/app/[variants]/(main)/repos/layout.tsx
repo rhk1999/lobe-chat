@@ -11,3 +11,5 @@ export default ({ children }: PropsWithChildren) => {
 
   return children;
 };
+
+export const dynamic = 'force-static';

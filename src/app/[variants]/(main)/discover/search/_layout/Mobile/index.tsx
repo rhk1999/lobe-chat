@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, Suspense } from 'react';
 
 import MobileContentLayout from '@/components/server/MobileNavLayout';
 import Footer from '@/features/Setting/Footer';
@@ -12,10 +12,10 @@ const Layout = ({ children }: PropsWithChildren) => {
     <MobileContentLayout
       gap={16}
       header={
-        <>
+        <Suspense>
           <Header />
           <Nav />
-        </>
+        </Suspense>
       }
       id={SCROLL_PARENT_ID}
       style={{ paddingInline: 16 }}

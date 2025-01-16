@@ -1,8 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useLayoutEffect } from 'react';
-
-import { useQueryRoute } from '@/hooks/useQueryRoute';
 
 /**
  * @description: Changelog Modal (intercepting routes fallback when hard refresh)
@@ -11,7 +10,7 @@ import { useQueryRoute } from '@/hooks/useQueryRoute';
  */
 
 const ChangelogModalFallback = () => {
-  const router = useQueryRoute();
+  const router = useRouter();
 
   useLayoutEffect(() => {
     router.replace('/changelog');

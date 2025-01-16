@@ -4,6 +4,7 @@ import { SideNav } from '@lobehub/ui';
 import { parseAsBoolean, useQueryState } from 'nuqs';
 import { memo } from 'react';
 
+import { withSuspense } from '@/components/withSuspense';
 import { useActiveTabKey } from '@/hooks/useActiveTabKey';
 import { useGlobalStore } from '@/store/global';
 import { systemStatusSelectors } from '@/store/global/selectors';
@@ -39,4 +40,4 @@ const Nav = memo(() => {
 
 Nav.displayName = 'DesktopNav';
 
-export default Nav;
+export default withSuspense(Nav);

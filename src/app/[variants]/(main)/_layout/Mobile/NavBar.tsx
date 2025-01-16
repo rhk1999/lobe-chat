@@ -9,6 +9,7 @@ import { rgba } from 'polished';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { withSuspense } from '@/components/withSuspense';
 import { useActiveTabKey } from '@/hooks/useActiveTabKey';
 import { SidebarTabKey } from '@/store/global/initialState';
 import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfig';
@@ -77,4 +78,4 @@ const NavBar = memo(() => {
 
 NavBar.displayName = 'MobileNav';
 
-export default NavBar;
+export default withSuspense(NavBar);

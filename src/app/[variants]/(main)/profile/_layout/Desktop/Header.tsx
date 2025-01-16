@@ -5,9 +5,12 @@ import { Drawer, type DrawerProps } from 'antd';
 import { createStyles } from 'antd-style';
 import { Menu } from 'lucide-react';
 import { ReactNode, memo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
 
 import BrandWatermark from '@/components/BrandWatermark';
+import { withSuspense } from '@/components/withSuspense';
+import { useActiveProfileKey } from '@/hooks/useActiveTabKey';
 
 const useStyles = createStyles(({ token, css }) => ({
   container: css`
@@ -25,12 +28,14 @@ const useStyles = createStyles(({ token, css }) => ({
 
 interface HeaderProps extends Pick<DrawerProps, 'getContainer'> {
   children: ReactNode;
-  title: ReactNode;
 }
 
-const Header = memo<HeaderProps>(({ children, getContainer, title }) => {
+const Header = memo<HeaderProps>(({ children, getContainer }) => {
   const [open, setOpen] = useState(false);
   const { styles, theme } = useStyles();
+  const { t } = useTranslation('auth');
+  const activeKey = useActiveProfileKey();
+  const title = t(`tab.${activeKey}`);
 
   return (
     <>
@@ -82,4 +87,4 @@ const Header = memo<HeaderProps>(({ children, getContainer, title }) => {
   );
 });
 
-export default Header;
+export default withSuspense(Header);

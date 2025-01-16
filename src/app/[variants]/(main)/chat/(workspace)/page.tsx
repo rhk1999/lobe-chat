@@ -25,10 +25,10 @@ export const generateMetadata = async (props: DynamicLayoutProps) => {
 };
 
 const Page = async (props: DynamicLayoutProps) => {
-  const { t } = await translation('metadata');
-
-  const isMobile = await RouteVariants.getIsMobile(props);
   const { hideDocs, showChangelog } = serverFeatureFlags();
+
+  const { isMobile, locale } = await RouteVariants.getVariantsFromProps(props);
+  const { t } = await translation('metadata', locale);
 
   const ld = ldModule.generate({
     description: t('chat.description', { appName: BRANDING_NAME }),
@@ -53,5 +53,3 @@ const Page = async (props: DynamicLayoutProps) => {
 Page.displayName = 'Chat';
 
 export default Page;
-
-export const dynamic = 'force-static';

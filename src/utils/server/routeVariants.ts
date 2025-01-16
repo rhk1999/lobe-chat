@@ -49,10 +49,21 @@ export class RouteVariants {
     }
   };
 
+  static getVariantsFromProps = async (props: DynamicLayoutProps) => {
+    const { variants } = await props.params;
+    return RouteVariants.deserializeVariants(variants);
+  };
+
   static getIsMobile = async (props: DynamicLayoutProps) => {
     const { variants } = await props.params;
     const { isMobile } = RouteVariants.deserializeVariants(variants);
     return isMobile;
+  };
+
+  static getLocale = async (props: DynamicLayoutProps) => {
+    const { variants } = await props.params;
+    const { locale } = RouteVariants.deserializeVariants(variants);
+    return locale;
   };
 
   // 工具函数：创建变体

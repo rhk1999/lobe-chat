@@ -13,8 +13,10 @@ import PageTitle from '../features/PageTitle';
 import Changelog from './features/ChangelogModal';
 import TelemetryNotification from './features/TelemetryNotification';
 
-export const generateMetadata = async () => {
-  const { t } = await translation('metadata');
+export const generateMetadata = async (props: DynamicLayoutProps) => {
+  const locale = await RouteVariants.getLocale(props);
+
+  const { t } = await translation('metadata', locale);
   return metadataModule.generate({
     description: t('chat.description', { appName: BRANDING_NAME }),
     title: t('chat.title', { appName: BRANDING_NAME }),

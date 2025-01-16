@@ -54,5 +54,4 @@ Page.displayName = 'Chat';
 
 export default Page;
 
-// try revalidate every 2 hours
-export const revalidate = 7200;
+export const dynamic = 'force-static';

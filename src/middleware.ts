@@ -54,7 +54,7 @@ const defaultMiddleware = (request: NextRequest) => {
   // 3. 处理 URL 重写
   // 构建新路径: /${route}${originalPathname}
   const nextPathname = `/${urlJoin(route, url.pathname)}`;
-  console.log('[origin]', url.pathname, '-> [rewrite]', nextPathname);
+  // console.log('[origin]', url.pathname, '-> [rewrite]', nextPathname);
   url.pathname = nextPathname;
 
   return NextResponse.rewrite(url);

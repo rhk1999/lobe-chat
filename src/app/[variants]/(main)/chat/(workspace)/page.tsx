@@ -6,7 +6,8 @@ import { BRANDING_NAME } from '@/const/branding';
 import { ldModule } from '@/server/ld';
 import { metadataModule } from '@/server/metadata';
 import { translation } from '@/server/translation';
-import { isMobileDevice } from '@/utils/server/responsive';
+import { DynamicLayoutProps } from '@/types/next';
+import { RouteVariants } from '@/utils/server/routeVariants';
 
 import PageTitle from '../features/PageTitle';
 import Changelog from './features/ChangelogModal';
@@ -21,10 +22,12 @@ export const generateMetadata = async () => {
   });
 };
 
-const Page = async () => {
-  const { hideDocs, showChangelog } = serverFeatureFlags();
-  const mobile = await isMobileDevice();
+const Page = async (props: DynamicLayoutProps) => {
   const { t } = await translation('metadata');
+
+  const isMobile = await RouteVariants.getIsMobile(props);
+  const { hideDocs, showChangelog } = serverFeatureFlags();
+
   const ld = ldModule.generate({
     description: t('chat.description', { appName: BRANDING_NAME }),
     title: t('chat.title', { appName: BRANDING_NAME }),
@@ -35,8 +38,8 @@ const Page = async () => {
     <>
       <StructuredData ld={ld} />
       <PageTitle />
-      <TelemetryNotification mobile={mobile} />
-      {showChangelog && !hideDocs && !mobile && (
+      <TelemetryNotification mobile={isMobile} />
+      {showChangelog && !hideDocs && !isMobile && (
         <Suspense>
           <Changelog />
         </Suspense>
@@ -48,3 +51,6 @@ const Page = async () => {
 Page.displayName = 'Chat';
 
 export default Page;
+
+// try revalidate every 2 hours
+export const revalidate = 7200;

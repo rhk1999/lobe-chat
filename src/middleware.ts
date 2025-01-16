@@ -18,9 +18,12 @@ export const config = {
     '/(api|trpc|webapi)(.*)',
     // include the /
     '/',
+    '/discover',
     '/discover(.*)',
+    '/chat',
     '/chat(.*)',
     '/settings(.*)',
+    '/files',
     '/files(.*)',
     '/repos(.*)',
     // ↓ cloud ↓
@@ -51,10 +54,22 @@ const defaultMiddleware = (request: NextRequest) => {
   if (['/api', '/trpc', '/webapi'].some((path) => url.pathname.startsWith(path)))
     return NextResponse.next();
 
-  // 3. 处理 URL 重写
+  // 优先处理 OPTIONS 请求
+  if (request.method === 'OPTIONS') {
+    return new NextResponse(null, {
+      headers: {
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
+  }
+
+  // 处理 URL 重写
   // 构建新路径: /${route}${originalPathname}
+  // 只对 GET 请求进行 URL 重写，确保其他类型的请求（包括 OPTIONS）不受影响
   const nextPathname = `/${urlJoin(route, url.pathname)}`;
-  console.log('[origin]', url.pathname, '-> [rewrite]', nextPathname);
+  console.log(`[rewrite] ${url.pathname} -> ${nextPathname}`);
   url.pathname = nextPathname;
 
   return NextResponse.rewrite(url);

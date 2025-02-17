@@ -4,6 +4,7 @@ import Ai21Provider from './ai21';
 import Ai360Provider from './ai360';
 import AnthropicProvider from './anthropic';
 import AzureProvider from './azure';
+import AzureAIProvider from './azureai';
 import BaichuanProvider from './baichuan';
 import BedrockProvider from './bedrock';
 import CloudflareProvider from './cloudflare';
@@ -18,6 +19,7 @@ import HigressProvider from './higress';
 import HuggingFaceProvider from './huggingface';
 import HunyuanProvider from './hunyuan';
 import InternLMProvider from './internlm';
+import JinaProvider from './jina';
 import LMStudioProvider from './lmstudio';
 import MinimaxProvider from './minimax';
 import MistralProvider from './mistral';
@@ -38,6 +40,7 @@ import TencentcloudProvider from './tencentcloud';
 import TogetherAIProvider from './togetherai';
 import UpstageProvider from './upstage';
 import VLLMProvider from './vllm';
+import VolcengineProvider from './volcengine';
 import WenxinProvider from './wenxin';
 import XAIProvider from './xai';
 import ZeroOneProvider from './zeroone';
@@ -67,6 +70,7 @@ export const LOBE_DEFAULT_MODEL_LIST: ChatModelCard[] = [
   AnthropicProvider.chatModels,
   HuggingFaceProvider.chatModels,
   XAIProvider.chatModels,
+  JinaProvider.chatModels,
   ZeroOneProvider.chatModels,
   StepfunProvider.chatModels,
   NovitaProvider.chatModels,
@@ -90,6 +94,7 @@ export const LOBE_DEFAULT_MODEL_LIST: ChatModelCard[] = [
 export const DEFAULT_MODEL_PROVIDER_LIST = [
   OpenAIProvider,
   { ...AzureProvider, chatModels: [] },
+  AzureAIProvider,
   OllamaProvider,
   VLLMProvider,
   AnthropicProvider,
@@ -110,6 +115,7 @@ export const DEFAULT_MODEL_PROVIDER_LIST = [
   Ai21Provider,
   UpstageProvider,
   XAIProvider,
+  JinaProvider,
   QwenProvider,
   WenxinProvider,
   TencentcloudProvider,
@@ -122,6 +128,7 @@ export const DEFAULT_MODEL_PROVIDER_LIST = [
   StepfunProvider,
   MoonshotProvider,
   BaichuanProvider,
+  VolcengineProvider,
   MinimaxProvider,
   LMStudioProvider,
   InternLMProvider,
@@ -145,6 +152,7 @@ export { default as Ai21ProviderCard } from './ai21';
 export { default as Ai360ProviderCard } from './ai360';
 export { default as AnthropicProviderCard } from './anthropic';
 export { default as AzureProviderCard } from './azure';
+export { default as AzureAIProviderCard } from './azureai';
 export { default as BaichuanProviderCard } from './baichuan';
 export { default as BedrockProviderCard } from './bedrock';
 export { default as CloudflareProviderCard } from './cloudflare';
@@ -159,6 +167,7 @@ export { default as HigressProviderCard } from './higress';
 export { default as HuggingFaceProviderCard } from './huggingface';
 export { default as HunyuanProviderCard } from './hunyuan';
 export { default as InternLMProviderCard } from './internlm';
+export { default as JinaProviderCard } from './jina';
 export { default as LMStudioProviderCard } from './lmstudio';
 export { default as MinimaxProviderCard } from './minimax';
 export { default as MistralProviderCard } from './mistral';
@@ -179,6 +188,7 @@ export { default as TencentCloudProviderCard } from './tencentcloud';
 export { default as TogetherAIProviderCard } from './togetherai';
 export { default as UpstageProviderCard } from './upstage';
 export { default as VLLMProviderCard } from './vllm';
+export { default as VolcengineProviderCard } from './volcengine';
 export { default as WenxinProviderCard } from './wenxin';
 export { default as XAIProviderCard } from './xai';
 export { default as ZeroOneProviderCard } from './zeroone';
